@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@mainPage');
+Route::get('add-place', 'BidController@addPlaceBid');
+Route::post('add-bid', 'BidController@addBid')->name("add-bid");
+Route::get('/formation-documents/{id}', 'BidController@formationDocument');
+Route::get('/formation-documents/{id}/{type}', 'BidController@getDocument');
+
