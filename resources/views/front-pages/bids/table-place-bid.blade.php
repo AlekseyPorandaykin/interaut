@@ -15,25 +15,25 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Вес (кг)</label>
             <div class="col-sm-10">
-                <input type="text" name="weight[{{$number}}]" class="form-control" placeholder="0">
+                <input type="text" name="weight[{{$number}}]" class="form-control" placeholder="0" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Объем (м3)</label>
             <div class="col-sm-10">
-                <input type="text" name="scope[{{$number}}]" class="form-control" placeholder="0">
+                <input type="text" name="scope[{{$number}}]" class="form-control" placeholder="0" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Тариф</label>
             <div class="col-sm-10">
-                <input type="text" name="rate[{{$number}}]" class="form-control"  placeholder="0" value="1">
+                <input type="text" name="rate[{{$number}}]" class="form-control"  placeholder="0" value="1" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Оценочная стоимость</label>
             <div class="col-sm-10">
-                <input type="text" name="assessed_value[{{$number}}]" class="form-control"  placeholder="0" >
+                <input type="text" name="assessed_value[{{$number}}]" class="form-control"  placeholder="0" required>
             </div>
         </div>
         <label class="col-sm-2 control-label">Удалить место</label>

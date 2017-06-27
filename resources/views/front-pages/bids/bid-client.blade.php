@@ -22,7 +22,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Дата сдачи груза</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" required name="date_delivery">
+            <input type="text" class="form-control datetimepicker-main" required name="date_delivery" >
         </div>
     </div>
     <div class="form-group">
@@ -39,7 +39,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Телефон получателя</label>
-            <div class="col-sm-10">
+        <div class="col-sm-10">
             <input type="phone" class="form-control" name="phone" required value="{{$phone}}">
         </div>
     </div>
@@ -62,3 +62,11 @@
         </div>
     </div>
 {{ Form::close() }}
+@section('scripts')
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker-main').datetimepicker({
+            });
+        });
+    </script>
+@stop

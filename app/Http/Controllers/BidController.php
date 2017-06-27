@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use App\Bid;
 use App\PlaceBid;
 use Cookie;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Response;
 
 class BidController extends Controller
@@ -57,11 +57,10 @@ class BidController extends Controller
     {
         $idBid = (int) $request->id;
         $data = Bid::find($idBid);
-
-//        dd('front-pages.bids.documents.'.$request->type);
-//        return view('front-pages.bids.documents.'.$request->type, ['data' => $data]);
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('front-pages.bids.documents.'.$request->type, ['data' => $data]);
-        return $pdf->download($request->type.'.pdf');
+        $places = PlaceBid::where('bid_id', $idBid)->get();
+//        dd($data);
+//        return view('front-pages.bids.documents.'.$request->type, ["data" => $data,  'places'=> $places]);
+        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places],[], ['format'=> 'A4-L',]);
+        return $pdf->stream($request->type.'.pdf');
     }
 }
