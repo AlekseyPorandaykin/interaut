@@ -15,10 +15,10 @@ class CreatePlaceBidsTable extends Migration
     {
         Schema::create('place_bids', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('weight')->default(0);
-            $table->float('scope')->default(0);
-            $table->float('rate')->default(0);
-            $table->float('assessed_value');
+            $table->double('weight', 9, 3)->default(0)->nullable();
+            $table->double('scope', 9, 3)->default(0)->nullable();
+            $table->float('rate')->default(0)->nullable();
+            $table->double('assessed_value', 15 ,4)->default(0)->nullable();
             $table->integer('packing_type_id')->unsigned();
             $table->foreign('packing_type_id')->references('id')->on('packing_types');
             $table->integer('bid_id')->unsigned();

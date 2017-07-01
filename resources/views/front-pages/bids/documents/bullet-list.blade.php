@@ -6,6 +6,7 @@
     <style>
         .main-page {
             padding: 10px 80px;
+            height: 500px;
         }
         .circumscribing {
             text-align: center;
@@ -49,12 +50,13 @@
     <div class="appellation name-recipient">{{$data["recipient"]}}</div>
     <div class="circumscribing address-recipient">Адрес: {{$data["address"]}} {{$data["phone"]}}</div>
     <div class="bottom-text circumscribing">
-        <div class="bottom-text-left">
+        <span class="bottom-text-left">
             Место {{++$keyPlace}}  из {{count($places)}}
-        </div>
-        <div class="bottom-text-right">
-            Дата отправление: {{$data['date_delivery']}}.
-        </div>
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="bottom-text-right">
+            Дата отправления: {{$data['date_delivery']}}.
+        </span>
     </div>
 </div>
 @endforeach

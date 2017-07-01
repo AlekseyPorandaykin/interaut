@@ -34,11 +34,13 @@ class BidController extends Controller
         {
             foreach ($data['packing_type'] as $keyPacking=>$valuePacking)
             {
+                $data['weight'] = str_replace(",",".",$data['weight']);
+                $data['scope'] = str_replace(",",".",$data['scope']);
                 $data_packing[$keyPacking]['packing_type_id'] = $valuePacking;
-                $data_packing[$keyPacking]['weight'] = $data['weight'][$keyPacking];
-                $data_packing[$keyPacking]['scope'] = $data['scope'][$keyPacking];
-                $data_packing[$keyPacking]['assessed_value'] = $data['assessed_value'][$keyPacking];
-                $data_packing[$keyPacking]['rate'] = $data['rate'][$keyPacking];
+                $data_packing[$keyPacking]['weight'] = (!empty($data['weight'][$keyPacking])?$data['weight'][$keyPacking]:0);
+                $data_packing[$keyPacking]['scope'] = (!empty($data['scope'][$keyPacking])?$data['scope'][$keyPacking]:0);
+                $data_packing[$keyPacking]['assessed_value'] = (!empty($data['assessed_value'][$keyPacking])?$data['assessed_value'][$keyPacking]:0);
+                $data_packing[$keyPacking]['rate'] = (!empty($data['rate'][$keyPacking])?$data['rate'][$keyPacking]:0);
                 $data_packing[$keyPacking]['bid_id'] = $result->id;
                 PlaceBid::create($data_packing[$keyPacking]);
             }
@@ -58,9 +60,20 @@ class BidController extends Controller
         $idBid = (int) $request->id;
         $data = Bid::find($idBid);
         $places = PlaceBid::where('bid_id', $idBid)->get();
-//        dd($data);
+        $totalPlacesData = ["weight" => 0, "scope" => 0];
+        foreach ($places as $place)
+        {
+            $totalPlacesData["weight"] += $place["weight"];
+            $totalPlacesData["scope"] += $place["scope"];
+        }
+//        dd($totalPlacesData);
 //        return view('front-pages.bids.documents.'.$request->type, ["data" => $data,  'places'=> $places]);
-        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places],[], ['format'=> 'A4-L',]);
+        $format = 'A4';
+        if ($request->type == 'bullet-list')
+        {
+            $format = 'A4-L';
+        }
+        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places, 'totalPlacesData' => $totalPlacesData],[], ['format'=> $format,]);
         return $pdf->stream($request->type.'.pdf');
     }
 }

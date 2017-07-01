@@ -5,18 +5,16 @@
     <title>Invoice</title>
     <style>
         .main-page {
-            font-size: 18px;
+            font-size: 14px;
         }
         .list-title {
             text-align: center;
-            font-size: 35px;
+            font-size: 18px;
             font-weight: 600;
+            line-height: 2.5;
         }
         .header {
             padding: 40px 20px;
-        }
-        .list-header {
-            display: inline-block;
         }
         table {
             width: 100%;
@@ -24,41 +22,69 @@
         table td, th {
             text-align: center;
         }
+        .number-document {
+            padding-left: 90%;
+        }
+        .list-header {
+            padding-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+        .user-data {
+            padding-top: 160px;
+        }
 
     </style>
 </head>
 <body>
 <div class="main-page">
+    <div class="number-document">Ф. 103</div>
     <div class="list-title">Список № {{$data["id"]}}</div>
-    <div class="list-title">внутренних почтовых отправлений от {{$data["date_delivery"]}}</div>
+    <div class="list-title">Внутренних почтовых отправлений от {{$data["date_delivery"]}}</div>
     <div class="header">
-        <span class="list-header list-header-nane">Наименование и индекс места приема :</span>
-        <span class="list-header list-header-text"> 102152 ОПС ПЖДП при Павелецком вокзале </span>
-        <br>
-        <span class="list-header list-header-nane">Всего РПО    </span>
-        <span class="list-header list-header-text">{{count($places)}} штук</span>
+        <div class="list-header">
+            Вид и категория РПО:
+             МКПО обыкновенное
+        </div>
+        <div class="list-header">
+            Отправитель:
+            <b>ООО «Компания Интерлогистика»</b>
+        </div>
+        <div class="list-header">
+            Наименование и индекс места приема:
+            102152 ОПС ПЖДП при Павелецком вокзале
+        </div>
+        <div class="list-header">
+            Всего РПО
+            {{count($places)}} штук
+        </div>
     </div>
-    <table border="1">
+    <table >
         <thead>
         <tr>
-            <th class="number-td">
+            <td class="number-td">
                 № <br> п/п
-            </th>
-            <th class="number-address">
+            </td>
+            <td class="number-address">
                 Адресат (Наименование организации, тлф)
-            </th>
-            <th class="number-weight">
+            </td>
+            <td class="number-weight">
                 Вес (кг)
-            </th>
-            <th class="number-scope">
+            </td>
+            <td class="number-scope">
                 Объем(м3)
-            </th>
-            <th class="number-rate">
+            </td>
+            <td class="number-rate">
                 Тариф, руб
-            </th>
-            <th class="number-rate">
+            </td>
+            <td class="number-rate">
                 Кол-во <br> отпр
-            </th>
+            </td>
         </tr>
         </thead>
         <tbody>
@@ -84,8 +110,37 @@
                 </td>
             </tr>
         @endforeach
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Итого
+            </td>
+            <td>
+                {{$totalPlacesData["weight"]}}
+            </td>
+            <td>
+                {{$totalPlacesData["scope"]}}
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+        </tr>
         </tbody>
     </table>
+    <div class="user-data">
+        ОТПРАВИТЕЛЬ: _______________________________
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ПРИНЯЛ: _______________________________
+    </div>
+    <div>
+        &nbsp;&nbsp; (печать, подпись, ФИО)
+    </div>
 </div>
 </body>
 </html>

@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Оценочная стоимость</label>
             <div class="col-sm-10">
-                <input type="text" name="assessed_value[{{$number}}]" class="form-control"  placeholder="0" required>
+                <input type="text" name="assessed_value[{{$number}}]" class="form-control"  placeholder="0" value="0">
             </div>
         </div>
         <label class="col-sm-2 control-label">Удалить место</label>
