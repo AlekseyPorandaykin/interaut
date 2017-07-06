@@ -1,6 +1,5 @@
 function addPlaceBid (data) {
     var number = $( data ).data('number');
-    console.log(number);
     $.ajax({
         url: "/add-place",
         data: { number: number},

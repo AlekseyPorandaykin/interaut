@@ -177,7 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

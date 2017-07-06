@@ -19,11 +19,17 @@ class CreateBidsTable extends Migration
             $table->string('departure_city');
             $table->string('city_receipt');
             $table->string('date_delivery');
-            $table->string('recipient', 300);
-            $table->string('address', 600);
-            $table->string('phone');
+            $table->string('sender_name', 300)->nullable();
+            $table->string('sender_phone')->nullable();
+            $table->string('sender_address', 600)->nullable();
+            $table->string('recipient_name', 300)->nullable();
+            $table->string('recipient_phone')->nullable();
+            $table->string('recipient_address', 600)->nullable();
             $table->integer('bid_status_id')->unsigned();
             $table->foreign('bid_status_id')->references('id')->on('bid_statuses');
+            $table->string('user_id')->nullable();
+            $table->string('date_receiving')->nullable();
+            $table->string('recipient_comments', 600)->nullable();
             $table->timestamps();
         });
     }

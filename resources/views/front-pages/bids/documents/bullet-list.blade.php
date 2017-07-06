@@ -43,10 +43,10 @@
 <div class="main-page">
     <div class="circumscribing">Отправитель:</div>
     <div class="appellation">ООО «Компания Интерлогистика»</div>
-    <div class="appellation departure_city">{{$data["departure_city"]}} </div>
+    <div class="appellation departure_city">{{$departure_city}} </div>
     <hr>
     <div class="circumscribing"> Получатель:</div>
-    <div class="appellation">{{$data["city_receipt"]}} </div>
+    <div class="appellation">{{$city_receipt}} </div>
     <div class="appellation name-recipient">{{$data["recipient"]}}</div>
     <div class="circumscribing address-recipient">Адрес: {{$data["address"]}} {{$data["phone"]}}</div>
     <div class="bottom-text circumscribing">

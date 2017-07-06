@@ -8,6 +8,7 @@ use App\Bid;
 use App\PlaceBid;
 use Cookie;
 use PDF;
+use App\City;
 use Illuminate\Http\Response;
 
 class BidController extends Controller
@@ -22,9 +23,9 @@ class BidController extends Controller
         $this->validate($request, [
             'departure_city' => 'required',
             'city_receipt' => 'required',
-            'recipient' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
+            'recipient_name' => 'required',
+            'recipient_address' => 'required',
+            'recipient_phone' => 'required',
         ]);
         $data = $request->all();
         $data['bid_status_id'] = 1;
@@ -45,7 +46,7 @@ class BidController extends Controller
                 PlaceBid::create($data_packing[$keyPacking]);
             }
         }
-        return redirect('formation-documents/'.$result->id)->cookie('recipient', $data["recipient"])->cookie('address', $data["address"])->cookie('phone', $data["phone"]);
+        return redirect('formation-documents/'.$result->id)->cookie('recipient_name', $data["recipient_name"])->cookie('recipient_address', $data["recipient_address"])->cookie('recipient_phone', $data["recipient_phone"]);
 
 //        return response()->view('front-pages.bids.formation-documents', ['result'=>$result])->cookie('recipient', $data["recipient"])->cookie('address', $data["address"])->cookie('phone', $data["phone"]);
 
@@ -59,6 +60,11 @@ class BidController extends Controller
     {
         $idBid = (int) $request->id;
         $data = Bid::find($idBid);
+
+        $data["departure_city"] = (int) $data["departure_city"];
+        $data["city_receipt"] = (int) $data["city_receipt"];
+        $departureCity = City::find($data["departure_city"]);
+        $cityReceipt = City::find($data["city_receipt"]);
         $places = PlaceBid::where('bid_id', $idBid)->get();
         $totalPlacesData = ["weight" => 0, "scope" => 0];
         foreach ($places as $place)
@@ -73,7 +79,7 @@ class BidController extends Controller
         {
             $format = 'A4-L';
         }
-        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places, 'totalPlacesData' => $totalPlacesData],[], ['format'=> $format,]);
+        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places, 'totalPlacesData' => $totalPlacesData, 'city_receipt' => $cityReceipt->name, 'departure_city' => $departureCity->name],[], ['format'=> $format,]);
         return $pdf->stream($request->type.'.pdf');
     }
 }

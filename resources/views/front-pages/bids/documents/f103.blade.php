@@ -45,7 +45,7 @@
 <div class="main-page">
     <div class="number-document">Ф. 103</div>
     <div class="list-title">Список № {{$data["id"]}}</div>
-    <div class="list-title">Внутренних почтовых отправлений от {{$data["date_delivery"]}}</div>
+    <div class="list-title">Внутренних почтовых отправлений от {{$data['date_delivery']}}</div>
     <div class="header">
         <div class="list-header">
             Вид и категория РПО:
@@ -94,7 +94,7 @@
                     {{++$keyPlace}}
                 </td>
                 <td>
-                    {{$data["city_receipt"]}}, {{$data["address"]}}, {{$data["recipient"]}}, тел. {{$data["phone"]}}
+                    {{$city_receipt}}, {{$data["recipient_address"]}}, {{$data["recipient_name"]}}, тел. {{$data["recipient_phone"]}}
                 </td>
                 <td>
                     {{$valPlace["weight"]}}

@@ -15,5 +15,13 @@ class BidStatusesTableSeeder extends Seeder
             'id' => 1,
             'bid_name' => 'Новая'
         ]);
+        DB::table('bid_statuses')->insert([
+            'id' => 2,
+            'bid_name' => 'Груз сдан'
+        ]);
+        DB::table('bid_statuses')->insert([
+            'id' => 3,
+            'bid_name' => 'Груз получен'
+        ]);
     }
 }

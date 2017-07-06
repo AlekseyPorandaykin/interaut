@@ -10,13 +10,21 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Город отправления </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" required name="departure_city">
+            <select class="form-control" name="departure_city">
+                @foreach ($departureCity as $departureCityItem)
+                    <option value="{{$departureCityItem->id}}">{{$departureCityItem->name}}</option>
+                @endforeach
+            </select>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Город получения </label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" required name="city_receipt">
+            <select class="form-control" name="city_receipt" >
+                @foreach ($receiptCity as $receiptCityItem)
+                    <option value="{{$receiptCityItem->id}}">{{$receiptCityItem->name}}</option>
+                @endforeach
+            </select>
         </div>
     </div>
     <div class="form-group">
@@ -28,19 +36,19 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Получатель</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Название юр.лица / ФИО " name="recipient" required value="{{$recipient}}">
+            <input type="text" class="form-control" placeholder="Название юр.лица / ФИО " name="recipient_name" required value="{{$recipient_name}}">
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Адрес</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Индекс, город, ул. , д., оф" name="address" require value="{{$address}}"d>
+            <input type="text" class="form-control" placeholder="Индекс, город, ул. , д., оф" name="recipient_address" require value="{{$recipient_address}}"d>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Телефон получателя</label>
         <div class="col-sm-10">
-            <input type="phone" class="form-control" name="phone" required value="{{$phone}}">
+            <input type="phone" class="form-control" name="recipient_phone" required value="{{$recipient_phone}}">
         </div>
     </div>
     <div class="panel panel-primary">
@@ -66,6 +74,7 @@
     <script type="text/javascript">
         $(function () {
             $('.datetimepicker-main').datetimepicker({
+                format: 'DD.MM.YYYY',
             });
         });
     </script>
