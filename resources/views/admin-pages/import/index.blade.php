@@ -2,7 +2,7 @@
 @section('title', 'Новая заявка')
 
 @section('content')
-    {{ Form::open(['route' => 'departure-schedule', 'method' => 'post', 'class' => 'form-inline']) }}
+    {{ Form::open(['route' => 'departure-schedule', 'method' => 'post', 'class' => 'form-inline', 'enctype' => 'multipart/form-data']) }}
         <div class="form-group">
             <label>Загрузить расписание отправлений</label>
             <input type="file" name="schedule">

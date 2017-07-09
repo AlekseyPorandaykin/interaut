@@ -42,7 +42,7 @@
             </div>
             <div class="col-sm-9"></div>
             <div class="col-sm-3">
-                <a href="">расписание отправлений</a>
+                <a data-remodal-target="modal">расписание отправлений</a>
             </div>
         </div>
         <p class="text-center">Реквизиты отправителя</p>
@@ -107,7 +107,42 @@
             </div>
         </div>
     {{ Form::close() }}
+    <div class="remodal" data-remodal-id="modal"
+         data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
 
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Расписание отправлений</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Дата</th>
+                <th>Дата сдачи</th>
+                <th>Дата получения</th>
+                <th>ГОРОД ОТПРАВЛЕНИЯ</th>
+                <th>ГОРОД ПОЛУЧЕНИЯ</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($departureSchedule as $departureScheduleItem)
+                <tr>
+                    <th scope="row">{{$departureScheduleItem->number_departure}}</th>
+                    <td>{{$departureScheduleItem->date}}</td>
+                    <td>{{$departureScheduleItem->data_delivery}}</td>
+                    <td>{{$departureScheduleItem->receipt_data}}</td>
+                    <td>{{$departureScheduleItem->departure_city}}</td>
+                    <td>{{$departureScheduleItem->city_receipt}}</td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+
+
+        <br>
+        {{--<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>--}}
+        <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+    </div>
 
 @endsection
 @section('scripts')
@@ -118,4 +153,5 @@
             });
         });
     </script>
+
 @stop

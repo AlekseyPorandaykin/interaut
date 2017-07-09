@@ -16,8 +16,6 @@ Route::get('add-place', 'BidController@addPlaceBid');
 Route::post('add-bid', 'BidController@addBid')->name("add-bid");
 Route::get('/formation-documents/{id}', 'BidController@formationDocument')->where('id', '[0-9]+');
 Route::get('/formation-documents/{id}/{type}', 'BidController@getDocument');
-Route::get('/import', 'Admin\ImportController@index');
-Route::post('/import/departure-schedule', 'Admin\ImportController@departureSchedule')->name('departure-schedule');
 
 
 Auth::routes();
@@ -29,5 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('now-bids', 'Admin\BidController@showNowBids');
     Route::get('bids/edit/{id}', 'Admin\BidController@edit');
     Route::post('bids/update/{id}', 'Admin\BidController@update');
+
+    Route::get('/import', 'Admin\ImportController@index');
+    Route::post('/import/departure-schedule', 'Admin\ImportController@departureSchedule')->name('departure-schedule');
 });
 Route::get('/home', 'HomeController@index')->name('home');

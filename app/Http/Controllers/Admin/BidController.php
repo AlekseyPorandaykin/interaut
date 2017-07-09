@@ -10,6 +10,7 @@ use App\Bid;
 use App\PlaceBid;
 use Auth;
 use App\BidStatus;
+use App\DepartureSchedule;
 
 class BidController extends Controller
 {
@@ -21,7 +22,9 @@ class BidController extends Controller
     {
         $departureCity = City::getDepartureCity();
         $receiptCity = City::getReceiptCity();
-        return view('admin-pages.bids.add-bid', ['departureCity' => $departureCity, 'receiptCity' => $receiptCity]);
+        $departureSchedule = DepartureSchedule::get();
+//        dd($departureSchedule);
+        return view('admin-pages.bids.add-bid', ['departureCity' => $departureCity, 'receiptCity' => $receiptCity, 'departureSchedule' => $departureSchedule]);
     }
     public function create(Request $request)
     {

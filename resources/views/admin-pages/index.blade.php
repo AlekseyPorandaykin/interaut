@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/vendors/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="/vendors/remodal/dist/remodal.css">
+    <link rel="stylesheet" href="/vendors/remodal/dist/remodal-default-theme.css">
     <title>@yield('title',  config('app.name') )</title>
 </head>
 <body>
@@ -71,6 +73,11 @@
         @include('admin-pages.parts.main-menu')
     </div>
     <div class="col-xs-6 col-md-9">
+        @if(Session::has("flash_message"))
+            <div class="formres">
+                <div class="loadmess">{{Session::get("flash_message")}}</div>
+            </div>
+        @endif
         <h1>@yield('title')</h1>
         @yield('content')
     </div>
@@ -79,6 +86,7 @@
 <script type="text/javascript" src="/vendors/moment/min/moment.min.js"></script>
 <script type="text/javascript" src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/vendors/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/vendors/remodal/dist/remodal.min.js"></script>
 <script src="/js/main.js"></script>
 @yield('scripts')
 </body>
