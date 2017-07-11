@@ -28,4 +28,32 @@ class ImportController extends Controller
         }
         return redirect('admin/import');
     }
+    public function importCity (Request $request)
+    {
+        if ($request->hasFile('city')) {
+            $addCity = ExcelController::addCity('city');
+            if (count($addCity))
+            {
+                Session::flash('flash_message', 'Данные городов были успешно загружены');
+            }
+            else {
+                Session::flash('flash_message', 'Данные городов не были загружены');
+            }
+        }
+        return redirect('admin/import');
+    }
+    public function tariffsReferrals(Request $request)
+    {
+        if ($request->hasFile('tariffs')) {
+            $addTariffsReferrals = ExcelController::addTariffsReferrals('tariffs');
+            if ($addTariffsReferrals)
+            {
+                Session::flash('flash_message', 'Тарифы отправлений для города '.$addTariffsReferrals.' были успешно загружены');
+            }
+            else {
+                Session::flash('flash_message', 'Тарифы отправлений не были загружены');
+            }
+        }
+        return redirect('admin/import');
+    }
 }

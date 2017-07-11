@@ -14,17 +14,11 @@ use App\DepartureSchedule;
 
 class BidController extends Controller
 {
-    /**
-     * Форма создания заявки
-     * @param Request $request
-     */
     public function newBid(Request $request)
     {
         $departureCity = City::getDepartureCity();
         $receiptCity = City::getReceiptCity();
-        $departureSchedule = DepartureSchedule::get();
-//        dd($departureSchedule);
-        return view('admin-pages.bids.add-bid', ['departureCity' => $departureCity, 'receiptCity' => $receiptCity, 'departureSchedule' => $departureSchedule]);
+        return view('admin-pages.bids.add-bid', ['departureCity' => $departureCity, 'receiptCity' => $receiptCity]);
     }
     public function create(Request $request)
     {
@@ -81,5 +75,13 @@ class BidController extends Controller
         Bid::where('id', $request->id)
             ->update(['bid_status_id' => $data['bid_status_id'], 'date_receiving' => $data['date_receiving'], 'recipient_comments' => $data['recipient_comments']]);
         return redirect()->route('bids');
+    }
+    public function getDepartureSchedule (Request $request)
+    {
+        $data = $request->all();
+        $departureSchedule = DepartureSchedule::getDepartureSchedule($data['departure'], $data['receipt']);
+        $departureCity = City::find($data['departure']);
+        $cityReceipt = City::find($data['receipt']);
+        return view('admin-pages.parts.departure-schedule', ['departureSchedule' => $departureSchedule, 'departureCity' => mb_convert_case($departureCity->name, MB_CASE_TITLE, "UTF-8"), 'cityReceipt' => mb_convert_case($cityReceipt->name, MB_CASE_TITLE, "UTF-8")]);
     }
 }

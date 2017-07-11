@@ -42,31 +42,32 @@
             </div>
             <div class="col-sm-9"></div>
             <div class="col-sm-3">
-                <a data-remodal-target="modal">расписание отправлений</a>
+                <a data-remodal-target="modal" class="departure--schedule">расписание отправлений</a>
             </div>
         </div>
+    <div style="display: none;">
         <p class="text-center">Реквизиты отправителя</p>
         <div class="form-group">
             <div class="col-sm-7">
                 <label class="col-sm-3 control-label">Название</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" placeholder="Название юр. лица / ФИО" name="sender_name">
+                    <input type="text" class="form-control" placeholder="Название юр. лица / ФИО" name="sender_name" value='ООО "Интерлогистика"'>
                 </div>
             </div>
             <div class="col-sm-5">
                 <label  class="col-sm-4 control-label">Телефон</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="sender_phone">
+                    <input type="text" class="form-control" name="sender_phone" value=" +7 (495) 269-01-35">
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Адрес</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control"  placeholder="Индекс, город, ул., д., оф." name="sender_address">
+                <input type="text" class="form-control"  placeholder="Индекс, город, ул., д., оф." name="sender_address" value='127015, г. Москва, ул. Бутырская, д. 62 офис 608, БЦ "Z-Plaza"'>
             </div>
         </div>
-
+    </div>
         <p class="text-center">Реквизиты получателя</p>
         <div class="form-group">
             <div class="col-sm-7">
@@ -112,33 +113,7 @@
 
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1>Расписание отправлений</h1>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>№</th>
-                <th>Дата</th>
-                <th>Дата сдачи</th>
-                <th>Дата получения</th>
-                <th>ГОРОД ОТПРАВЛЕНИЯ</th>
-                <th>ГОРОД ПОЛУЧЕНИЯ</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($departureSchedule as $departureScheduleItem)
-                <tr>
-                    <th scope="row">{{$departureScheduleItem->number_departure}}</th>
-                    <td>{{$departureScheduleItem->date}}</td>
-                    <td>{{$departureScheduleItem->data_delivery}}</td>
-                    <td>{{$departureScheduleItem->receipt_data}}</td>
-                    <td>{{$departureScheduleItem->departure_city}}</td>
-                    <td>{{$departureScheduleItem->city_receipt}}</td>
-                </tr>
-            @endforeach
-
-            </tbody>
-        </table>
-
-
+        <div class="departure--schedule--data"> </div>
         <br>
         {{--<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>--}}
         <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
