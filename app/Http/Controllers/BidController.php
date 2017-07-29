@@ -79,7 +79,7 @@ class BidController extends Controller
         {
             $format = 'A4-L';
         }
-        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places, 'totalPlacesData' => $totalPlacesData, 'city_receipt' => $cityReceipt->name, 'departure_city' => $departureCity->name],[], ['format'=> $format,]);
+        $pdf = PDF::loadView('front-pages.bids.documents.'.$request->type, ["data" => $data, 'places'=> $places, 'totalPlacesData' => $totalPlacesData, 'city_receipt' => mb_convert_case($cityReceipt->name, MB_CASE_TITLE, 'UTF-8'), 'departure_city' => mb_convert_case($departureCity->name, MB_CASE_TITLE, 'UTF-8')],[], ['format'=> $format,]);
         return $pdf->stream($request->type.'.pdf');
     }
 }

@@ -21,7 +21,55 @@ class Bid extends Model
         return Bid::join('bid_statuses', 'bids.bid_status_id', '=', 'bid_statuses.id')
             ->select('bids.*', 'bid_statuses.bid_name')
             ->where('user_id', $userId)
-            ->where('bids.bid_status_id', 1)
+            ->where('bids.bid_status_id', 2)
+            ->get();
+    }
+    public static function getEndBidsUser ($userId)
+    {
+        return Bid::join('bid_statuses', 'bids.bid_status_id', '=', 'bid_statuses.id')
+            ->select('bids.*', 'bid_statuses.bid_name')
+            ->where('user_id', $userId)
+            ->where('bids.bid_status_id', 3)
+            ->get();
+    }
+
+
+    public static function getBidsUserPeriod ($userId, $period, $status)
+    {
+        return Bid::join('bid_statuses', 'bids.bid_status_id', '=', 'bid_statuses.id')
+            ->select('bids.*', 'bid_statuses.bid_name')
+            ->where('user_id', $userId)
+            ->whereIn('bids.bid_status_id', $status)
+            ->where('bids.created_at', '>=', $period)
+            ->get();
+    }
+
+    public static function getBidsUserPeriodDate ($userId, $data_start, $data_end, $status)
+    {
+        return Bid::join('bid_statuses', 'bids.bid_status_id', '=', 'bid_statuses.id')
+            ->select('bids.*', 'bid_statuses.bid_name')
+            ->where('user_id', $userId)
+            ->whereIn('bids.bid_status_id', $status)
+            ->where('bids.created_at', '>=', $data_start)
+            ->where('bids.created_at', '<=', $data_end)
+            ->get();
+    }
+    public static function getBidsUserOnCity ($userId, $departure_city, $city_receipt, $status)
+    {
+        return Bid::join('bid_statuses', 'bids.bid_status_id', '=', 'bid_statuses.id')
+            ->select('bids.*', 'bid_statuses.bid_name')
+            ->where('user_id', $userId)
+            ->whereIn('bids.bid_status_id', $status)
+            ->where('bids.departure_city',  $departure_city)
+            ->where('bids.city_receipt', $city_receipt)
+            ->get();
+    }
+
+    public static function getBidsOnIds ($arrayIds)
+    {
+        return Bid::join('bid_statuses', 'bids.bid_status_id', '=', 'bid_statuses.id')
+            ->select('bids.*', 'bid_statuses.bid_name as status_name')
+            ->whereIn('bids.id', $arrayIds)
             ->get();
     }
 }

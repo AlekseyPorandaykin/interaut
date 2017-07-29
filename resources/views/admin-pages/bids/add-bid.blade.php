@@ -125,6 +125,7 @@
         $(function () {
             $('.datetimepicker-main').datetimepicker({
                 format: 'DD.MM.YYYY',
+                locale: 'ru'
             });
         });
     </script>

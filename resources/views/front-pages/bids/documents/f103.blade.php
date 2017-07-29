@@ -94,7 +94,7 @@
                     {{++$keyPlace}}
                 </td>
                 <td>
-                    {{$city_receipt}}, {{$data["recipient_address"]}}, {{$data["recipient_name"]}}, тел. {{$data["recipient_phone"]}}
+                    г. {{$city_receipt}}, {{$data["recipient_address"]}}, {{$data["recipient_name"]}}, тел. {{$data["recipient_phone"]}}
                 </td>
                 <td>
                     {{$valPlace["weight"]}}

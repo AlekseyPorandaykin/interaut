@@ -1,5 +1,5 @@
 @extends('admin-pages.index')
-@section('title', 'Все заявки')
+@section('title', 'Текущие заявки')
 
 @section('content')
     @include('admin-pages.bids.table-show')

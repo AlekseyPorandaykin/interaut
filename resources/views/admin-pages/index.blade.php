@@ -84,6 +84,7 @@
 
 <script src='/vendors/jquery/dist/jquery.js' type='text/javascript'></script>
 <script type="text/javascript" src="/vendors/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/vendors/moment/min/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/vendors/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/vendors/remodal/dist/remodal.min.js"></script>

@@ -11,21 +11,29 @@ class City extends Model
     protected $fillable = ['name', 'departure_city', 'city_receipt', 'updated_at', 'created_at'];
     public static function getDepartureCity ()
     {
-        $items = DB::table('city')
+        $result = DB::table('city')
             ->select('*')
             ->where([
                 ['departure_city', '=', 1]
             ])->get();
-        return $items;
+        foreach ($result as &$itemVal)
+        {
+            $itemVal->name = mb_convert_case($itemVal->name, MB_CASE_TITLE, "UTF-8");
+        }
+        return $result;
     }
     public static function getReceiptCity ()
     {
-        $items = DB::table('city')
+        $result = DB::table('city')
             ->select('*')
             ->where([
                 ['city_receipt', '=', 1]
             ])->get();
-        return $items;
+        foreach ($result as &$itemVal)
+        {
+            $itemVal->name = mb_convert_case($itemVal->name, MB_CASE_TITLE, "UTF-8");
+        }
+        return $result;
     }
     public static function createDepartureCity ($name)
     {
@@ -47,5 +55,12 @@ class City extends Model
             return City::create(['name' => $nameCity, 'city_receipt' => 1]);
         }
         return $data;
+    }
+    public static function getNameCity ($id)
+    {
+        $name = DB::table('city')
+            ->find($id)
+            ->name;
+        return mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
     }
 }

@@ -87,7 +87,7 @@ class ExcelController extends Controller
                 $city_destination = City::createCityReceipt($valueItem["gorod_polucheniya"]);
                 $valueInsert['number_departure'] = (int) $valueItem['por.nomer.otprav'];
                 $valueInsert['date'] = $valueItem["data"]->toDateString();
-                $valueInsert['data_delivery'] = $valueItem["data_sdachi"];
+                $valueInsert['data_delivery'] = $valueItem["mesto_sdachi"];
                 $valueInsert['receipt_data'] = $valueItem["data_polucheniya"]->toDateTimeString();
                 $valueInsert['departure_city'] = $departure_city->id;
                 $valueInsert['city_receipt'] = $city_destination->id;
