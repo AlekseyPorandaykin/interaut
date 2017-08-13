@@ -73,11 +73,7 @@
         @include('admin-pages.parts.main-menu')
     </div>
     <div class="col-xs-6 col-md-9">
-        @if(Session::has("flash_message"))
-            <div class="formres">
-                <div class="loadmess">{{Session::get("flash_message")}}</div>
-            </div>
-        @endif
+        @include('admin-pages.parts.admin-flash')
         <h1>@yield('title')</h1>
         @yield('content')
     </div>

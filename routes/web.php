@@ -36,8 +36,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('/import/import-city', 'Admin\ImportController@importCity')->name('import-city');
     Route::post('/import/import-tariffs', 'Admin\ImportController@tariffsReferrals')->name('import-tariffs');
 
+    Route::post('/create-report', 'Admin\BidController@createReport')->name('create-report');
+
     Route::get('/clients', 'Admin\ClientController@index');
     Route::get('/clients/create', 'Admin\ClientController@create')->name('create-client');
     Route::post('/clients/save', 'Admin\ClientController@save')->name('save-new-client');
+    Route::get('/clients/edit/{id}', 'Admin\ClientController@edit');
+    Route::get('/clients/delete/{id}', 'Admin\ClientController@delete');
+    Route::get('/clients/tariff/{id}', 'Admin\ClientController@tariff');
 });
 Route::get('/home', 'HomeController@index')->name('home');

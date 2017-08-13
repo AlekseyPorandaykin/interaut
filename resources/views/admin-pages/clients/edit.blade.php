@@ -1,5 +1,5 @@
 @extends('admin-pages.index')
-@section('title', 'Создать клиента')
+@section('title', 'Редактировать клиента')
 
 @section('content')
     @include('admin-pages.clients.form')
