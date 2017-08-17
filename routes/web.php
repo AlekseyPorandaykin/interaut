@@ -43,6 +43,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('/clients/save', 'Admin\ClientController@save')->name('save-new-client');
     Route::get('/clients/edit/{id}', 'Admin\ClientController@edit');
     Route::get('/clients/delete/{id}', 'Admin\ClientController@delete');
-    Route::get('/clients/tariff/{id}', 'Admin\ClientController@tariff');
 });
 Route::get('/home', 'HomeController@index')->name('home');
